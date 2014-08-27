@@ -1,103 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Life with Linux</title>
-  <meta name="author" content="foobargem">
-
-  
-  <meta name="description" content="컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다. 버스(buses), 컨트롤러(controllers), 스위치(switches), 브리지 장치(bridge &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://eunchul.github.io">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Life with Linux" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Life with Linux</a></h1>
-  
-    <h2>for Jesus.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:eunchul.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Category: Storage | Life with Linux]]></title>
+  <link href="http://eunchul.github.io/blog/categories/storage/atom.xml" rel="self"/>
+  <link href="http://eunchul.github.io/"/>
+  <updated>2014-08-27T12:41:03+09:00</updated>
+  <id>http://eunchul.github.io/</id>
+  <author>
+    <name><![CDATA[foobargem]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2014/08/27/multipath/">Multipath</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2014-08-27T11:11:11+09:00" pubdate data-updated="true">Aug 27<span>th</span>, 2014</time>
-        
-           | <a href="/blog/2014/08/27/multipath/#disqus_thread"
-             data-disqus-identifier="http://eunchul.github.io/blog/2014/08/27/multipath/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다.</p>
+  <entry>
+    <title type="html"><![CDATA[Multipath]]></title>
+    <link href="http://eunchul.github.io/blog/2014/08/27/multipath/"/>
+    <updated>2014-08-27T11:11:11+09:00</updated>
+    <id>http://eunchul.github.io/blog/2014/08/27/multipath</id>
+    <content type="html"><![CDATA[<p>컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다.</p>
 
 <p>버스(buses), 컨트롤러(controllers), 스위치(switches), 브리지 장치(bridge devices) 로 구성된 대량의 스토리지 장치(mass storage devices)와 컴퓨터 시스템의 CPU 사이에 한개 이상의 경로(path)를 두어서 구성을 한다.</p>
 
@@ -227,94 +148,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 <li><a href="https://www.sit.auckland.ac.nz/Configuring_SAN_access_with_Linux_multipath">https://www.sit.auckland.ac.nz/Configuring_SAN_access_with_Linux_multipath</a></li>
 </ul>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/08/27/multipath/">Multipath</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/07/14/installing-hangul-application/">한글2007 설치하기 - 여자친구를 위한</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/14/installing-debian-on-macbook-air/">Macbook Air 에 Debian(wheezy) 설치하기</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/01/installing-rbenv/">Installing Rbenv on OS X</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - foobargem -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'lifewithlinux';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+</feed>
