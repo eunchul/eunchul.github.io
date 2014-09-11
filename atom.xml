@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Life with Linux]]></title>
-  <link href="http://eunchul.github.io/atom.xml" rel="self"/>
-  <link href="http://eunchul.github.io/"/>
-  <updated>2014-08-27T12:41:03+09:00</updated>
-  <id>http://eunchul.github.io/</id>
+  <link href="http://blog.foobargem.com/atom.xml" rel="self"/>
+  <link href="http://blog.foobargem.com/"/>
+  <updated>2014-09-11T14:46:29+09:00</updated>
+  <id>http://blog.foobargem.com/</id>
   <author>
     <name><![CDATA[foobargem]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Multipath]]></title>
-    <link href="http://eunchul.github.io/blog/2014/08/27/multipath/"/>
+    <link href="http://blog.foobargem.com/blog/2014/08/27/multipath/"/>
     <updated>2014-08-27T11:11:11+09:00</updated>
-    <id>http://eunchul.github.io/blog/2014/08/27/multipath</id>
+    <id>http://blog.foobargem.com/blog/2014/08/27/multipath</id>
     <content type="html"><![CDATA[<p>컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다.</p>
 
 <p>버스(buses), 컨트롤러(controllers), 스위치(switches), 브리지 장치(bridge devices) 로 구성된 대량의 스토리지 장치(mass storage devices)와 컴퓨터 시스템의 CPU 사이에 한개 이상의 경로(path)를 두어서 구성을 한다.</p>
@@ -104,19 +104,19 @@ multipaths {
 
 <h5>defaults</h5>
 
-<p><img src="http://eunchul.github.io/images/201408/multipath_default.png"></p>
+<p><img src="http://blog.foobargem.com/images/201408/multipath_default.png"></p>
 
 <h5>path_grouping_policy: multibus</h5>
 
-<p><img src="http://eunchul.github.io/images/201408/multipath_multibus.png"></p>
+<p><img src="http://blog.foobargem.com/images/201408/multipath_multibus.png"></p>
 
 <h5>hwhandler=0</h5>
 
-<p><img src="http://eunchul.github.io/images/201408/multipath_disable_hwhandler.png"></p>
+<p><img src="http://blog.foobargem.com/images/201408/multipath_disable_hwhandler.png"></p>
 
 <h5>features=0</h5>
 
-<p><img src="http://eunchul.github.io/images/201408/multipath_disable_features.png"></p>
+<p><img src="http://blog.foobargem.com/images/201408/multipath_disable_features.png"></p>
 
 <h3>failover</h3>
 
@@ -153,9 +153,9 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
   
   <entry>
     <title type="html"><![CDATA[한글2007 설치하기 - 여자친구를 위한]]></title>
-    <link href="http://eunchul.github.io/blog/2014/07/14/installing-hangul-application/"/>
+    <link href="http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application/"/>
     <updated>2014-07-14T21:31:05+09:00</updated>
-    <id>http://eunchul.github.io/blog/2014/07/14/installing-hangul-application</id>
+    <id>http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application</id>
     <content type="html"><![CDATA[<h3>머리말</h3>
 
 <p>나의 사랑하는 여자친구는 유치원 교사이다.
@@ -174,12 +174,12 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_001.png"><br/ >
+<img src="http://blog.foobargem.com/images/201407/step_001.png"><br/ >
 </p>
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_002.png">
+<img src="http://blog.foobargem.com/images/201407/step_002.png">
 </p>
 
 
@@ -191,7 +191,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_003.png">
+<img src="http://blog.foobargem.com/images/201407/step_003.png">
 &#8220;게시자를 알 수 없는 다음 프로그램이 이 컴퓨터를 변경할 수 있도록 허용하시겠습니까?&#8221; 라는 질문에 &#8220;예&#8221;라고 선택을 한다
 .</p>
 
@@ -199,7 +199,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 <h5>3. 한글2007 설치 단계 진행</h5>
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_004.png">
+<img src="http://blog.foobargem.com/images/201407/step_004.png">
 &#8220;한글과컴퓨터 한글2007 설치&#8221;를 클릭!!
 </p>
 
@@ -207,7 +207,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_005.png">
+<img src="http://blog.foobargem.com/images/201407/step_005.png">
 &#8220;다음&#8221;을 클릭!!
 </p>
 
@@ -215,7 +215,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_006.png">
+<img src="http://blog.foobargem.com/images/201407/step_006.png">
 사용권 계약서는 읽을수록 혼동되니 읽지말고 &#8220;동의함&#8221;을 선택후 &#8220;다음&#8221; 클릭!!
 </p>
 
@@ -223,7 +223,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_007.png">
+<img src="http://blog.foobargem.com/images/201407/step_007.png">
 &#8220;사용자 이름&#8221;, &#8220;단체&#8221;, &#8220;제품번호&#8221;를 입력 후 &#8220;다음&#8221; 클릭!!
 </p>
 
@@ -231,7 +231,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_008.png">
+<img src="http://blog.foobargem.com/images/201407/step_008.png">
 &#8220;권장설치&#8221;를 선택후 &#8220;다음&#8221; 클릭!!
 </p>
 
@@ -239,7 +239,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_009.png">
+<img src="http://blog.foobargem.com/images/201407/step_009.png">
 &#8220;설치 폴더 선택&#8221;도 기본값(C:\HNC)을 변경하지 않고 &#8220;다음&#8221; 클릭!! 
 </p>
 
@@ -247,7 +247,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_010.png">
+<img src="http://blog.foobargem.com/images/201407/step_010.png">
 &#8220;설치&#8221;버튼을 클릭하여 설치 진행!!
 </p>
 
@@ -255,19 +255,19 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_012.png">
+<img src="http://blog.foobargem.com/images/201407/step_012.png">
 </p>
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_013.png">
+<img src="http://blog.foobargem.com/images/201407/step_013.png">
 </p>
 
 
 <h5>4. 자동 업데이트 설정</h5>
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_014.png">
+<img src="http://blog.foobargem.com/images/201407/step_014.png">
 자동업데이트는 사용해도 좋지만 실제 업데이트 하는 경우는 적기 때문에 체크해제 후 &#8220;닫기&#8221;버튼 클릭!!
 </p>
 
@@ -275,7 +275,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 <h5>5. 한글2007 실행</h5>
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_015.png">
+<img src="http://blog.foobargem.com/images/201407/step_015.png">
 시작 -> 프로그램 -> &#8220;한글과컴퓨터 한글2008&#8221;
 </p>
 
@@ -283,7 +283,7 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
 
 
 <p>
-<img src="http://eunchul.github.io/images/201407/step_016.png">
+<img src="http://blog.foobargem.com/images/201407/step_016.png">
 </p>
 
 
@@ -298,9 +298,9 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
   
   <entry>
     <title type="html"><![CDATA[Macbook Air 에 Debian(wheezy) 설치하기]]></title>
-    <link href="http://eunchul.github.io/blog/2013/12/14/installing-debian-on-macbook-air/"/>
+    <link href="http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air/"/>
     <updated>2013-12-14T23:09:46+09:00</updated>
-    <id>http://eunchul.github.io/blog/2013/12/14/installing-debian-on-macbook-air</id>
+    <id>http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air</id>
     <content type="html"><![CDATA[<h3>Macbook Air</h3>
 
 <p>난 맥북 에어를 좋아한다.
@@ -380,9 +380,9 @@ alt+F2 를 눌러서 콘솔로 접속을 한다. 이시점이면 /target 디렉�
   
   <entry>
     <title type="html"><![CDATA[Installing Rbenv on OS X]]></title>
-    <link href="http://eunchul.github.io/blog/2013/12/01/installing-rbenv/"/>
+    <link href="http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/"/>
     <updated>2013-12-01T22:12:48+09:00</updated>
-    <id>http://eunchul.github.io/blog/2013/12/01/installing-rbenv</id>
+    <id>http://blog.foobargem.com/blog/2013/12/01/installing-rbenv</id>
     <content type="html"><![CDATA[<p>늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
 OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
 그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다.</p>

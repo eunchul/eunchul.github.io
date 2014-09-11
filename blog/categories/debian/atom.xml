@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Debian | Life with Linux]]></title>
-  <link href="http://eunchul.github.io/blog/categories/debian/atom.xml" rel="self"/>
-  <link href="http://eunchul.github.io/"/>
-  <updated>2014-08-27T12:41:03+09:00</updated>
-  <id>http://eunchul.github.io/</id>
+  <link href="http://blog.foobargem.com/blog/categories/debian/atom.xml" rel="self"/>
+  <link href="http://blog.foobargem.com/"/>
+  <updated>2014-09-11T14:46:29+09:00</updated>
+  <id>http://blog.foobargem.com/</id>
   <author>
     <name><![CDATA[foobargem]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Multipath]]></title>
-    <link href="http://eunchul.github.io/blog/2014/08/27/multipath/"/>
+    <link href="http://blog.foobargem.com/blog/2014/08/27/multipath/"/>
     <updated>2014-08-27T11:11:11+09:00</updated>
-    <id>http://eunchul.github.io/blog/2014/08/27/multipath</id>
+    <id>http://blog.foobargem.com/blog/2014/08/27/multipath</id>
     <content type="html"><![CDATA[<p>컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다.</p>
 
 <p>버스(buses), 컨트롤러(controllers), 스위치(switches), 브리지 장치(bridge devices) 로 구성된 대량의 스토리지 장치(mass storage devices)와 컴퓨터 시스템의 CPU 사이에 한개 이상의 경로(path)를 두어서 구성을 한다.</p>
@@ -153,9 +153,9 @@ features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주
   
   <entry>
     <title type="html"><![CDATA[Macbook Air 에 Debian(wheezy) 설치하기]]></title>
-    <link href="http://eunchul.github.io/blog/2013/12/14/installing-debian-on-macbook-air/"/>
+    <link href="http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air/"/>
     <updated>2013-12-14T23:09:46+09:00</updated>
-    <id>http://eunchul.github.io/blog/2013/12/14/installing-debian-on-macbook-air</id>
+    <id>http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air</id>
     <content type="html"><![CDATA[<h3>Macbook Air</h3>
 
 <p>난 맥북 에어를 좋아한다.

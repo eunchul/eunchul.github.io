@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Life | Life with Linux]]></title>
-  <link href="http://eunchul.github.io/blog/categories/life/atom.xml" rel="self"/>
-  <link href="http://eunchul.github.io/"/>
-  <updated>2014-08-27T12:41:03+09:00</updated>
-  <id>http://eunchul.github.io/</id>
+  <link href="http://blog.foobargem.com/blog/categories/life/atom.xml" rel="self"/>
+  <link href="http://blog.foobargem.com/"/>
+  <updated>2014-09-11T14:46:29+09:00</updated>
+  <id>http://blog.foobargem.com/</id>
   <author>
     <name><![CDATA[foobargem]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[한글2007 설치하기 - 여자친구를 위한]]></title>
-    <link href="http://eunchul.github.io/blog/2014/07/14/installing-hangul-application/"/>
+    <link href="http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application/"/>
     <updated>2014-07-14T21:31:05+09:00</updated>
-    <id>http://eunchul.github.io/blog/2014/07/14/installing-hangul-application</id>
+    <id>http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application</id>
     <content type="html"><![CDATA[<h3>머리말</h3>
 
 <p>나의 사랑하는 여자친구는 유치원 교사이다.

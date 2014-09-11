@@ -1,31 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://eunchul.github.io/blog/2013/12/01/installing-rbenv/</loc>
+        <loc>http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/</loc>
         <lastmod>2014-08-27T12:40:08+09:00</lastmod>
     </url>
     <url>
-        <loc>http://eunchul.github.io/blog/2013/12/14/installing-debian-on-macbook-air/</loc>
+        <loc>http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air/</loc>
         <lastmod>2014-08-27T12:40:27+09:00</lastmod>
     </url>
     <url>
-        <loc>http://eunchul.github.io/blog/2014/07/14/installing-hangul-application/</loc>
+        <loc>http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application/</loc>
         <lastmod>2014-08-27T12:40:39+09:00</lastmod>
     </url>
     <url>
-        <loc>http://eunchul.github.io/blog/2014/08/27/multipath/</loc>
+        <loc>http://blog.foobargem.com/blog/2014/08/27/multipath/</loc>
         <lastmod>2014-08-27T12:40:53+09:00</lastmod>
     </url>
     <url>
-        <loc>http://eunchul.github.io/blog/archives/</loc>
+        <loc>http://blog.foobargem.com/blog/archives/</loc>
         <lastmod>2014-08-27T12:40:53+09:00</lastmod>
     </url>
     <url>
-        <loc>http://eunchul.github.io/</loc>
-        <lastmod>2014-08-27T12:40:53+09:00</lastmod>
+        <loc>http://blog.foobargem.com/</loc>
+        <lastmod>2014-08-28T10:32:14+09:00</lastmod>
     </url>
     <url>
-        <loc>http://eunchul.github.io/robots.txt</loc>
+        <loc>http://blog.foobargem.com/robots.txt</loc>
         <lastmod>2014-08-27T12:37:19+09:00</lastmod>
     </url>
 </urlset>

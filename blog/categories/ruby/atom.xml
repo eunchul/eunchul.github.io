@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | Life with Linux]]></title>
-  <link href="http://eunchul.github.io/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://eunchul.github.io/"/>
-  <updated>2014-08-27T12:41:03+09:00</updated>
-  <id>http://eunchul.github.io/</id>
+  <link href="http://blog.foobargem.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://blog.foobargem.com/"/>
+  <updated>2014-09-11T14:46:29+09:00</updated>
+  <id>http://blog.foobargem.com/</id>
   <author>
     <name><![CDATA[foobargem]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Installing Rbenv on OS X]]></title>
-    <link href="http://eunchul.github.io/blog/2013/12/01/installing-rbenv/"/>
+    <link href="http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/"/>
     <updated>2013-12-01T22:12:48+09:00</updated>
-    <id>http://eunchul.github.io/blog/2013/12/01/installing-rbenv</id>
+    <id>http://blog.foobargem.com/blog/2013/12/01/installing-rbenv</id>
     <content type="html"><![CDATA[<p>늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
 OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
 그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다.</p>
