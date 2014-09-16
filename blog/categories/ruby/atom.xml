@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Life with Linux]]></title>
+  <link href="http://blog.foobargem.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://blog.foobargem.com/"/>
+  <updated>2014-09-11T14:46:29+09:00</updated>
+  <id>http://blog.foobargem.com/</id>
+  <author>
+    <name><![CDATA[foobargem]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Rbenv on OS X]]></title>
+    <link href="http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/"/>
+    <updated>2013-12-01T22:12:48+09:00</updated>
+    <id>http://blog.foobargem.com/blog/2013/12/01/installing-rbenv</id>
+    <content type="html"><![CDATA[<p>늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
+OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
+그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다.</p>
+
+<p><a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>의 가이드를 따라 설치를 하면
+irb 나 rails console 에서 한글을 입력하지 못하게 될것이고
+openssl 관련한 이슈가 생길것이다. (이전의 경험이라 지금은 확인을 안해봤다.)</p>
+
+<p>이를 위해서 openssl 과 readline 을 ruby 를 빌드할때 참조시켜줘야 한다.
+brew 의 설치는 <a href="http://brew.sh/">Homebrew 프로젝트 페이지</a>를 참조하면 된다.</p>
+
+<h3>openssl 설치</h3>
+
+<pre><code>brew install openssl
+</code></pre>
+
+<h3>readline 설치</h3>
+
+<pre><code>brew install readline
+</code></pre>
+
+<h3>rbenv 설치</h3>
+
+<pre><code>$ cd  # move to home dir.
+$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
+$ source .bash_profile
+$ type rbenv
+#=&gt; "rbenv is a function"
+</code></pre>
+
+<p>자세한 내용은 <a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>를 참조.</p>
+
+<h3>ruby-build 설치</h3>
+
+<p>rbenv 의 plugin 으로 설치하는 것을 권장.</p>
+
+<pre><code>$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+</code></pre>
+
+<p>자세한 내용은 <a href="https://github.com/sstephenson/ruby-build">ruby-build 프로젝트 페이지</a>를 참조.</p>
+
+<h3>ruby 설치</h3>
+
+<pre><code>$ rbenv install --list   # 설치가능한 버전확인
+$ CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-openssl-dir=$(brew --prefix openssl)" rbenv install 2.0.0-p353
+$ rbenv global 2.0.0-p353
+$ rbenv rehash
+$ ruby --version
+</code></pre>
+
+<p>이것으로 완료!!
+즐거운 루비 곡갱이질을.. :)</p>
+]]></content>
+  </entry>
+  
+</feed>
