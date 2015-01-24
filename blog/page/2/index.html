@@ -9,10 +9,7 @@
   <meta name="author" content="foobargem">
 
   
-  <meta name="description" content="머리말 나의 사랑하는 여자친구는 유치원 교사이다.
-이 글은 그녀가 가지고 있는 넷북에 한글2010을 설치하는 방법을 알려주기 위해 작성했다.
-안타깝게도 내가 가지고 있는것은 한글2007뿐이다.
-한글2010과 한글2007 두 버전의 차이는 센스쟁이 여자친구가 거뜬히 &hellip;">
+  <meta name="description" content="컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다. 버스(buses), 컨트롤러(controllers), 스위치(switches), 브리지 장치(bridge &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/07/14/installing-hangul-application/">한글2007 설치하기 - 여자친구를 위한</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/08/27/multipath/">Multipath</a></h1>
     
     
       <p class="meta">
@@ -90,153 +87,146 @@
   
 
 
-<time datetime="2014-07-14T21:31:05+09:00" pubdate data-updated="true">Jul 14<span>th</span>, 2014</time>
+<time datetime="2014-08-27T11:11:11+09:00" pubdate data-updated="true">Aug 27<span>th</span>, 2014</time>
         
-           | <a href="/blog/2014/07/14/installing-hangul-application/#disqus_thread"
-             data-disqus-identifier="http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application/">Comments</a>
+           | <a href="/blog/2014/08/27/multipath/#disqus_thread"
+             data-disqus-identifier="http://blog.foobargem.com/blog/2014/08/27/multipath/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>머리말</h3>
+  <div class="entry-content"><p>컴퓨터 스토리지에서 multipath I/O 는 결함감내시스템(Fault tolerance) 과 성능(Performance) 향상을 위한 기술을 말한다.</p>
 
-<p>나의 사랑하는 여자친구는 유치원 교사이다.
-이 글은 그녀가 가지고 있는 넷북에 한글2010을 설치하는 방법을 알려주기 위해 작성했다.
-안타깝게도 내가 가지고 있는것은 한글2007뿐이다.
-한글2010과 한글2007 두 버전의 차이는 센스쟁이 여자친구가 거뜬히 극복할 것을 믿기에
-한글2007을 기준으로 글을 작성한다.</p>
+<p>버스(buses), 컨트롤러(controllers), 스위치(switches), 브리지 장치(bridge devices) 로 구성된 대량의 스토리지 장치(mass storage devices)와 컴퓨터 시스템의 CPU 사이에 한개 이상의 경로(path)를 두어서 구성을 한다.</p>
 
-<h3>설치과정</h3>
+<p>예를 들면 하나의 SCSI 디스크가 연결된 두개의 SCSI 컨트롤러(controllers) 가 같은 컴퓨터에 장착되어 있거나 두개의 파이버 채널(Fiber Channel) 포트(port)가 연결되어 있는 것을 말한다.
+만약 한개의 컨트롤러나 포트 또는 스위치가 장애가 발생하면 운영체제(OS)는 장애가 나지 않은 다른 컨트롤러를 통해서 반드시 I/O 작업이 이뤄져야 한다.</p>
 
-<h5>1. iso 파일의 압축 해제</h5>
+<p>Multipath software layers 는 아래와 같은 성능 향상을 위한 기능을 제공한다.</p>
 
-<p>
-한글2007 iso 파일을 7Zip 으로 압축을 해제한다.
-</p>
-
-
-<p>
-<img src="/images/201407/step_001.png"><br/ >
-</p>
+<ul>
+<li>Dynamic load balancing</li>
+<li>Traffic shaping</li>
+<li>Automatic path management</li>
+<li>Dynamic reconfiguration</li>
+</ul>
 
 
-<p>
-<img src="/images/201407/step_002.png">
-</p>
+<h3>설정</h3>
 
+<p>Debian wheezy 에서multipath-tools_0.4.9+git0.4dfdaf2b-7~deb7u2_amd64.deb 패키지를 설치하여 구성하였다.</p>
 
-<h5>2. install.exe 파일 실행</h5>
+<h4>WWN or WWID</h4>
 
-<p>압축이 풀려진 폴더로 가서 install.exe 파일을 실행(더블클릭)한다.</p>
+<p>WWN(World Wide Name) 또는 WWID(World Wide Identifier) 라고 불리운다.
+이것은 FC(Fiber Channel), SAS(Serial Attached SCSI), ATA(Advanced Technology Attachment) 의 스토리지 기술에서 고유한 식별자(unique identifier)로 사용된다.</p>
 
+<p>참고: <a href="http://en.wikipedia.org/wiki/World_Wide_Name">http://en.wikipedia.org/wiki/World_Wide_Name</a></p>
 
+<h5>FC 주소 확인</h5>
 
+<p>HBA 가 장착된 리눅스 시스템에서 /sys/class/fc_host 디렉토리 이하를 살펴보면 확인할 수 있다.</p>
 
-<p>
-<img src="/images/201407/step_003.png">
-&#8220;게시자를 알 수 없는 다음 프로그램이 이 컴퓨터를 변경할 수 있도록 허용하시겠습니까?&#8221; 라는 질문에 &#8220;예&#8221;라고 선택을 한다
-.</p>
+<pre><code># ls /sys/class/fc_host
+host0
+# cat /sys/class/fc_host/host0/port_name
+0x2100001b32939df8
+# cat /sys/class/fc_host/host0/node_name
+0x2000001b32939df8
+</code></pre>
 
+<h5>WWN 확인</h5>
 
-<h5>3. 한글2007 설치 단계 진행</h5>
+<p>리눅스 시스템에서는 /sys/class/fc_transport 디렉토리 이하를 살펴보면 확인할 수 있다.</p>
 
-<p>
-<img src="/images/201407/step_004.png">
-&#8220;한글과컴퓨터 한글2007 설치&#8221;를 클릭!!
-</p>
+<pre><code># ls /sys/class/fc_transport
+target0:0:0  target0:0:1
+# cat /sys/class/fc_transport/target0\:0\:0/node_name 
+0x2000001b4d01a9f2
+# cat /sys/class/fc_transport/target0\:0\:0/port_name 
+0x2100001b4d01a9f2
+</code></pre>
 
+<h5>multipath.conf</h5>
 
+<p>Debian wheezy 에 4개의 FC path 가 할당 되었다.</p>
 
+<pre><code>defaults {
+    user_friendly_names yes 
+    fast_io_fail_tmo 15  
+}
 
-<p>
-<img src="/images/201407/step_005.png">
-&#8220;다음&#8221;을 클릭!!
-</p>
+blacklist {
+    devnode "^sd[a-z][[0-9]*]"
+    wwid 36b82a720d8d964001b5dbbc31d351fe1
+}
 
+multipaths {
+    multipath {
+        wwid 3600601601c203900cff81153e321e411
+    }   
+    multipath {
+        wwid 3600601601c203900d0f81153e321e411
+    }   
+    multipath {
+        wwid 3600601601c203900ee1d1460e321e411
+    }   
+    multipath {
+        wwid 3600601601c203900ef1d1460e321e411
+    }   
+}
+</code></pre>
 
+<h4>설정 예</h4>
 
+<h5>defaults</h5>
 
-<p>
-<img src="/images/201407/step_006.png">
-사용권 계약서는 읽을수록 혼동되니 읽지말고 &#8220;동의함&#8221;을 선택후 &#8220;다음&#8221; 클릭!!
-</p>
+<p><img src="/images/201408/multipath_default.png"></p>
 
+<h5>path_grouping_policy: multibus</h5>
 
+<p><img src="/images/201408/multipath_multibus.png"></p>
 
+<h5>hwhandler=0</h5>
 
-<p>
-<img src="/images/201407/step_007.png">
-&#8220;사용자 이름&#8221;, &#8220;단체&#8221;, &#8220;제품번호&#8221;를 입력 후 &#8220;다음&#8221; 클릭!!
-</p>
+<p><img src="/images/201408/multipath_disable_hwhandler.png"></p>
 
+<h5>features=0</h5>
 
+<p><img src="/images/201408/multipath_disable_features.png"></p>
 
+<h3>failover</h3>
 
-<p>
-<img src="/images/201407/step_008.png">
-&#8220;권장설치&#8221;를 선택후 &#8220;다음&#8221; 클릭!!
-</p>
+<p>Debian wheezy 에서 multipath 를 구성한뒤 failover 시험을 했다.
+2개의 HBA에 연결된 port 를 하나 뽑았을 때 I/O 작업이 지속되는지를 체크 했는데
+300초 동안 I/O 작업이 멈춰있었다.
+실제로는 OCFS2 로 구성되어 있었는데 OCFS2 의 self-fencing 으로인해 재부팅이 되었다.</p>
 
+<p>이를 해결하기 위해서 Debian 시스템을 확인하던 중
+dev_loss_tmo 의 기본값이 300초, fast_io_fail_tmo 의 기본값이 off 임을 발견하였다.</p>
 
+<p>그래서 fast_io_fail_tmo 를 15초로 설정해주니 15초의 I/O 지연이 발생하지만 failover 가 정상적으로 수행됨을 확인했다.</p>
 
+<h3>문제점</h3>
 
-<p>
-<img src="/images/201407/step_009.png">
-&#8220;설치 폴더 선택&#8221;도 기본값(C:\HNC)을 변경하지 않고 &#8220;다음&#8221; 클릭!! 
-</p>
+<p>multipath.conf 의 man page 에 따라 defaults 섹션에 기술한 설정값이 적용이 안됨을 발견했다.
+features=0 을 설정하기 위해서는 multipath 섹션을 따로 기술해주고 no_path_retry fail 을 추가해주면 된다.</p>
 
+<p>이는 좀더 확인이 필요하다.</p>
 
+<h3>참고</h3>
 
+<ul>
+<li><a href="https://access.redhat.com/documentation/ko-KR/Red_Hat_Enterprise_Linux/6/html/DM_Multipath/">https://access.redhat.com/documentation/ko-KR/Red_Hat_Enterprise_Linux/6/html/DM_Multipath/</a></li>
+<li><a href="http://www.sourceware.org/lvm2/wiki/MultipathUsageGuide">http://www.sourceware.org/lvm2/wiki/MultipathUsageGuide</a></li>
+<li><a href="http://docs.oracle.com/cd/E19253-01/820-1931/">http://docs.oracle.com/cd/E19253-01/820-1931/</a></li>
+<li><a href="http://www.brentozar.com/archive/2009/05/san-multipathing-part-1-what-are-paths/">http://www.brentozar.com/archive/2009/05/san-multipathing-part-1-what-are-paths/</a></li>
+<li><a href="http://www.brentozar.com/archive/2009/05/san-multipathing-part-2-what-multipathing-does/">http://www.brentozar.com/archive/2009/05/san-multipathing-part-2-what-multipathing-does/</a></li>
+<li><a href="https://www.sit.auckland.ac.nz/Configuring_SAN_access_with_Linux_multipath">https://www.sit.auckland.ac.nz/Configuring_SAN_access_with_Linux_multipath</a></li>
+</ul>
 
-<p>
-<img src="/images/201407/step_010.png">
-&#8220;설치&#8221;버튼을 클릭하여 설치 진행!!
-</p>
-
-
-
-
-<p>
-<img src="/images/201407/step_012.png">
-</p>
-
-
-<p>
-<img src="/images/201407/step_013.png">
-</p>
-
-
-<h5>4. 자동 업데이트 설정</h5>
-
-<p>
-<img src="/images/201407/step_014.png">
-자동업데이트는 사용해도 좋지만 실제 업데이트 하는 경우는 적기 때문에 체크해제 후 &#8220;닫기&#8221;버튼 클릭!!
-</p>
-
-
-<h5>5. 한글2007 실행</h5>
-
-<p>
-<img src="/images/201407/step_015.png">
-시작 -> 프로그램 -> &#8220;한글과컴퓨터 한글2008&#8221;
-</p>
-
-
-
-
-<p>
-<img src="/images/201407/step_016.png">
-</p>
-
-
-<h3>맺음</h3>
-
-<p>소프트웨어 설치는 쉬워보이지만 생소한 용어들이 어렵게 느껴지게 하는것 같다.
-누구나 쓰기 쉬운 소프트웨어를 만드는 일은 그만큼 고려해야 할 게 많은것 같다.</p>
-
-<p>여자친구가 한글(한컴오피스) 프로그램을 설치하는데 도움이 되길 바라며..</p>
 </div>
   
   
@@ -259,6 +249,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/24/i-like-bojagi-card/">보자기카드 샘플 후기</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/08/27/multipath/">Multipath</a>
@@ -289,7 +283,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - foobargem -
+  Copyright &copy; 2015 - foobargem -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
