@@ -9,9 +9,10 @@
   <meta name="author" content="foobargem">
 
   
-  <meta name="description" content="늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
-OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
-그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다. Rbenv 프로젝트 &hellip;">
+  <meta name="description" content="Macbook Air 난 맥북 에어를 좋아한다.
+가볍고, 13인치 화면에서 1400x900 해상도가 지원이 되며 전력관리가 우수하기 때문이다.
+2010년에 처음으로 맥북 에어를 구입하고 OS X 를 사용하면서 리눅스가 너무너무 그리웠다.
+예쁘고 멋진 인터페이스에 나름 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,7 +74,7 @@ OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/01/installing-rbenv/">Installing Rbenv on OS X</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/12/14/installing-debian-on-macbook-air/">Macbook Air 에 Debian(wheezy) 설치하기</a></h1>
     
     
       <p class="meta">
@@ -89,70 +90,90 @@ OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
   
 
 
-<time datetime="2013-12-01T22:12:48+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2013</time>
+<time datetime="2013-12-14T23:09:46+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2013</time>
         
-           | <a href="/blog/2013/12/01/installing-rbenv/#disqus_thread"
-             data-disqus-identifier="http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/">Comments</a>
+           | <a href="/blog/2013/12/14/installing-debian-on-macbook-air/#disqus_thread"
+             data-disqus-identifier="http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
-OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
-그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다.</p>
+  <div class="entry-content"><h3>Macbook Air</h3>
 
-<p><a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>의 가이드를 따라 설치를 하면
-irb 나 rails console 에서 한글을 입력하지 못하게 될것이고
-openssl 관련한 이슈가 생길것이다. (이전의 경험이라 지금은 확인을 안해봤다.)</p>
+<p>난 맥북 에어를 좋아한다.
+가볍고, 13인치 화면에서 1400x900 해상도가 지원이 되며 전력관리가 우수하기 때문이다.
+2010년에 처음으로 맥북 에어를 구입하고 OS X 를 사용하면서 리눅스가 너무너무 그리웠다.
+예쁘고 멋진 인터페이스에 나름 안정적인 OS X 였지만
+어느날 iTunes 를 업데이트한뒤 iTunes 의 버그로 시스템이 멈추는 현상이 생겼고
+그 후로 Update 할때마다 시스템이 죽는게 아닐까 걱정이 되더라. :(</p>
 
-<p>이를 위해서 openssl 과 readline 을 ruby 를 빌드할때 참조시켜줘야 한다.
-brew 의 설치는 <a href="http://brew.sh/">Homebrew 프로젝트 페이지</a>를 참조하면 된다.</p>
+<p>v10.6 > v10.7 > v10.8 > v10.9 까지 판올림을 해오면서 잘 써왔지만 이젠 리눅스로 돌아가기로 결심!</p>
 
-<h3>openssl 설치</h3>
+<h3>준비</h3>
 
-<pre><code>brew install openssl
+<p>Debian wheezy(7.2.0-amd64-netinst) iso 파일을 다운로드 받아서 USB drive 를 만든다.
+또한 네트워크 <a href="http://ftp.kr.debian.org/debian/pool/non-free/f/firmware-nonfree/firmware-brcm80211_0.36+wheezy.1_all.deb">firmware (firmware-brcm80211)</a> 도 다운로드 받아서 다른 USB 에 저장한다.
+여유가 있을때 macbook air 에 설치할 수 있는 netinst 로 패키징을 해야겠다.</p>
+
+<p>만들어진 USB 를 꼽고 부팅을 한다. 부팅할때 Option 키를 누르고 있어야 설치디스크 선택 화면이 나온다.
+EFI 장치를 선택하고 부팅하면 Debian Installer 화면이 보인다.</p>
+
+<h3>설치</h3>
+
+<p>설치는 installer 인터페이스로 디스크 파티셔닝까지 진행을 한뒤 콘솔로 수동 작업을 해줘야 한다.</p>
+
+<p>파티션은 200MB를 EFI system partition 으로, 30GB를 시스템의 루트(/) 파티션으로, 2GB를 스왑으로 잡았다.
+남은 디스크는 OS 설치후 추가 하기 위해 놔두었다.</p>
+
+<p><strong>Base system</strong></p>
+
+<p>파티션을 잡은 뒤 Base system 설치가 진행되다가 실패한다. 원인은 정확하게 모르겠다.;;
+alt+F2 를 눌러서 콘솔로 접속을 한다. 이시점이면 /target 디렉토리가 존재할것이다. 없다면 mkdir!!</p>
+
+<pre><code># debootstrap --arch amd64 wheezy /target http://ftp.neowiz.com/debian
+...
+# mount -o bind /proc /target/proc
+# mount -o bind /sys /target/sys
+# mount -o bind /dev /target/dev
+# mount -o bind /dev/pts /target/dev/pts
+# chroot /target /bin/bash
+# mkdir /boot/efi
+# mount /dev/sda1 /boot/efi
 </code></pre>
 
-<h3>readline 설치</h3>
+<p><strong>패키지 설치</strong></p>
 
-<pre><code>brew install readline
+<pre><code># modprobe efivars
+# apt-get install initramfs-tools linux-image-3.2.0-4-amd64 grub-efi-amd64 firmware-brcm80211 wireless-tools wpasupplicant
+# update-initramfs -u
+# grub-install /dev/sda
+# update-grub
+# umount /dev/sda1
+# exit
+# umount /target/dev/pts
+# umount /target/dev
+# umount /target/sys
+# umount /target/proc
+# reboot
 </code></pre>
 
-<h3>rbenv 설치</h3>
+<h3>완료</h3>
 
-<pre><code>$ cd  # move to home dir.
-$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
-$ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
-$ source .bash_profile
-$ type rbenv
-#=&gt; "rbenv is a function"
-</code></pre>
+<p>이제 부팅이 되면 바로 grub 화면이 보이고 Debian 으로 부팅할 수 있게 된다.</p>
 
-<p>자세한 내용은 <a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>를 참조.</p>
+<h3>남은것들</h3>
 
-<h3>ruby-build 설치</h3>
+<p>이제 Macbook Air 가 가지고 있는 하드웨어의 기능을 사용하기 위해 이런저런 삽질이 남았다.</p>
 
-<p>rbenv 의 plugin 으로 설치하는 것을 권장.</p>
+<h3>참고</h3>
 
-<pre><code>$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-</code></pre>
-
-<p>자세한 내용은 <a href="https://github.com/sstephenson/ruby-build">ruby-build 프로젝트 페이지</a>를 참조.</p>
-
-<h3>ruby 설치</h3>
-
-<pre><code>$ rbenv install --list   # 설치가능한 버전확인
-$ CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-openssl-dir=$(brew --prefix openssl)" rbenv install 2.0.0-p353
-$ rbenv global 2.0.0-p353
-$ rbenv rehash
-$ ruby --version
-</code></pre>
-
-<p>이것으로 완료!!
-즐거운 루비 곡갱이질을.. :)</p>
+<p><a href="http://alexandre.delanoe.org/blog/archives/2012/10/index.html#e2012-10-05T09_04_38.txt">http://alexandre.delanoe.org/blog/archives/2012/10/index.html#e2012-10-05T09_04_38.txt</a><br/ >
+<a href="http://dentifrice.poivron.org/laptops/macbookair3,1/">http://dentifrice.poivron.org/laptops/macbookair3,1/</a><br/ >
+<a href="http://blog.felipe-alfaro.com/2006/09/19/installing-refit-on-the-hidden-efi-system-partition/">http://blog.felipe-alfaro.com/2006/09/19/installing-refit-on-the-hidden-efi-system-partition/</a><br/ >
+<a href="https://wiki.debian.org/MacBookAir">https://wiki.debian.org/MacBookAir</a><br/ >
+<a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBookAir/5-1">https://wiki.debian.org/InstallingDebianOn/Apple/MacBookAir/5-1</a><br/ ></p>
 </div>
   
   
@@ -161,6 +182,8 @@ $ ruby --version
     </article>
   
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -173,6 +196,10 @@ $ ruby --version
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/04/build-kernel-on-lg-gram-laptop/">LG 그램 랩탑에서 Linux Kernel 빌드하기</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/01/24/i-like-bojagi-card/">보자기카드 샘플 후기</a>
@@ -188,10 +215,6 @@ $ ruby --version
     
       <li class="post">
         <a href="/blog/2013/12/14/installing-debian-on-macbook-air/">Macbook Air 에 Debian(wheezy) 설치하기</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/01/installing-rbenv/">Installing Rbenv on OS X</a>
       </li>
     
   </ul>
