@@ -9,10 +9,10 @@
   <meta name="author" content="foobargem">
 
   
-  <meta name="description" content="Macbook Air 난 맥북 에어를 좋아한다.
-가볍고, 13인치 화면에서 1400x900 해상도가 지원이 되며 전력관리가 우수하기 때문이다.
-2010년에 처음으로 맥북 에어를 구입하고 OS X 를 사용하면서 리눅스가 너무너무 그리웠다.
-예쁘고 멋진 인터페이스에 나름 &hellip;">
+  <meta name="description" content="머리말 나의 사랑하는 여자친구는 유치원 교사이다.
+이 글은 그녀가 가지고 있는 넷북에 한글2010을 설치하는 방법을 알려주기 위해 작성했다.
+안타깝게도 내가 가지고 있는것은 한글2007뿐이다.
+한글2010과 한글2007 두 버전의 차이는 센스쟁이 여자친구가 거뜬히 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,7 +74,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/14/installing-debian-on-macbook-air/">Macbook Air 에 Debian(wheezy) 설치하기</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/07/14/installing-hangul-application/">한글2007 설치하기 - 여자친구를 위한</a></h1>
     
     
       <p class="meta">
@@ -90,90 +90,153 @@
   
 
 
-<time datetime="2013-12-14T23:09:46+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2013</time>
+<time datetime="2014-07-14T21:31:05+09:00" pubdate data-updated="true">Jul 14<span>th</span>, 2014</time>
         
-           | <a href="/blog/2013/12/14/installing-debian-on-macbook-air/#disqus_thread"
-             data-disqus-identifier="http://blog.foobargem.com/blog/2013/12/14/installing-debian-on-macbook-air/">Comments</a>
+           | <a href="/blog/2014/07/14/installing-hangul-application/#disqus_thread"
+             data-disqus-identifier="http://blog.foobargem.com/blog/2014/07/14/installing-hangul-application/">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h3>Macbook Air</h3>
+  <div class="entry-content"><h3>머리말</h3>
 
-<p>난 맥북 에어를 좋아한다.
-가볍고, 13인치 화면에서 1400x900 해상도가 지원이 되며 전력관리가 우수하기 때문이다.
-2010년에 처음으로 맥북 에어를 구입하고 OS X 를 사용하면서 리눅스가 너무너무 그리웠다.
-예쁘고 멋진 인터페이스에 나름 안정적인 OS X 였지만
-어느날 iTunes 를 업데이트한뒤 iTunes 의 버그로 시스템이 멈추는 현상이 생겼고
-그 후로 Update 할때마다 시스템이 죽는게 아닐까 걱정이 되더라. :(</p>
+<p>나의 사랑하는 여자친구는 유치원 교사이다.
+이 글은 그녀가 가지고 있는 넷북에 한글2010을 설치하는 방법을 알려주기 위해 작성했다.
+안타깝게도 내가 가지고 있는것은 한글2007뿐이다.
+한글2010과 한글2007 두 버전의 차이는 센스쟁이 여자친구가 거뜬히 극복할 것을 믿기에
+한글2007을 기준으로 글을 작성한다.</p>
 
-<p>v10.6 > v10.7 > v10.8 > v10.9 까지 판올림을 해오면서 잘 써왔지만 이젠 리눅스로 돌아가기로 결심!</p>
+<h3>설치과정</h3>
 
-<h3>준비</h3>
+<h5>1. iso 파일의 압축 해제</h5>
 
-<p>Debian wheezy(7.2.0-amd64-netinst) iso 파일을 다운로드 받아서 USB drive 를 만든다.
-또한 네트워크 <a href="http://ftp.kr.debian.org/debian/pool/non-free/f/firmware-nonfree/firmware-brcm80211_0.36+wheezy.1_all.deb">firmware (firmware-brcm80211)</a> 도 다운로드 받아서 다른 USB 에 저장한다.
-여유가 있을때 macbook air 에 설치할 수 있는 netinst 로 패키징을 해야겠다.</p>
+<p>
+한글2007 iso 파일을 7Zip 으로 압축을 해제한다.
+</p>
 
-<p>만들어진 USB 를 꼽고 부팅을 한다. 부팅할때 Option 키를 누르고 있어야 설치디스크 선택 화면이 나온다.
-EFI 장치를 선택하고 부팅하면 Debian Installer 화면이 보인다.</p>
 
-<h3>설치</h3>
+<p>
+<img src="/images/201407/step_001.png"><br/ >
+</p>
 
-<p>설치는 installer 인터페이스로 디스크 파티셔닝까지 진행을 한뒤 콘솔로 수동 작업을 해줘야 한다.</p>
 
-<p>파티션은 200MB를 EFI system partition 으로, 30GB를 시스템의 루트(/) 파티션으로, 2GB를 스왑으로 잡았다.
-남은 디스크는 OS 설치후 추가 하기 위해 놔두었다.</p>
+<p>
+<img src="/images/201407/step_002.png">
+</p>
 
-<p><strong>Base system</strong></p>
 
-<p>파티션을 잡은 뒤 Base system 설치가 진행되다가 실패한다. 원인은 정확하게 모르겠다.;;
-alt+F2 를 눌러서 콘솔로 접속을 한다. 이시점이면 /target 디렉토리가 존재할것이다. 없다면 mkdir!!</p>
+<h5>2. install.exe 파일 실행</h5>
 
-<pre><code># debootstrap --arch amd64 wheezy /target http://ftp.neowiz.com/debian
-...
-# mount -o bind /proc /target/proc
-# mount -o bind /sys /target/sys
-# mount -o bind /dev /target/dev
-# mount -o bind /dev/pts /target/dev/pts
-# chroot /target /bin/bash
-# mkdir /boot/efi
-# mount /dev/sda1 /boot/efi
-</code></pre>
+<p>압축이 풀려진 폴더로 가서 install.exe 파일을 실행(더블클릭)한다.</p>
 
-<p><strong>패키지 설치</strong></p>
 
-<pre><code># modprobe efivars
-# apt-get install initramfs-tools linux-image-3.2.0-4-amd64 grub-efi-amd64 firmware-brcm80211 wireless-tools wpasupplicant
-# update-initramfs -u
-# grub-install /dev/sda
-# update-grub
-# umount /dev/sda1
-# exit
-# umount /target/dev/pts
-# umount /target/dev
-# umount /target/sys
-# umount /target/proc
-# reboot
-</code></pre>
 
-<h3>완료</h3>
 
-<p>이제 부팅이 되면 바로 grub 화면이 보이고 Debian 으로 부팅할 수 있게 된다.</p>
+<p>
+<img src="/images/201407/step_003.png">
+&#8220;게시자를 알 수 없는 다음 프로그램이 이 컴퓨터를 변경할 수 있도록 허용하시겠습니까?&#8221; 라는 질문에 &#8220;예&#8221;라고 선택을 한다
+.</p>
 
-<h3>남은것들</h3>
 
-<p>이제 Macbook Air 가 가지고 있는 하드웨어의 기능을 사용하기 위해 이런저런 삽질이 남았다.</p>
+<h5>3. 한글2007 설치 단계 진행</h5>
 
-<h3>참고</h3>
+<p>
+<img src="/images/201407/step_004.png">
+&#8220;한글과컴퓨터 한글2007 설치&#8221;를 클릭!!
+</p>
 
-<p><a href="http://alexandre.delanoe.org/blog/archives/2012/10/index.html#e2012-10-05T09_04_38.txt">http://alexandre.delanoe.org/blog/archives/2012/10/index.html#e2012-10-05T09_04_38.txt</a><br/ >
-<a href="http://dentifrice.poivron.org/laptops/macbookair3,1/">http://dentifrice.poivron.org/laptops/macbookair3,1/</a><br/ >
-<a href="http://blog.felipe-alfaro.com/2006/09/19/installing-refit-on-the-hidden-efi-system-partition/">http://blog.felipe-alfaro.com/2006/09/19/installing-refit-on-the-hidden-efi-system-partition/</a><br/ >
-<a href="https://wiki.debian.org/MacBookAir">https://wiki.debian.org/MacBookAir</a><br/ >
-<a href="https://wiki.debian.org/InstallingDebianOn/Apple/MacBookAir/5-1">https://wiki.debian.org/InstallingDebianOn/Apple/MacBookAir/5-1</a><br/ ></p>
+
+
+
+<p>
+<img src="/images/201407/step_005.png">
+&#8220;다음&#8221;을 클릭!!
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_006.png">
+사용권 계약서는 읽을수록 혼동되니 읽지말고 &#8220;동의함&#8221;을 선택후 &#8220;다음&#8221; 클릭!!
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_007.png">
+&#8220;사용자 이름&#8221;, &#8220;단체&#8221;, &#8220;제품번호&#8221;를 입력 후 &#8220;다음&#8221; 클릭!!
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_008.png">
+&#8220;권장설치&#8221;를 선택후 &#8220;다음&#8221; 클릭!!
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_009.png">
+&#8220;설치 폴더 선택&#8221;도 기본값(C:\HNC)을 변경하지 않고 &#8220;다음&#8221; 클릭!! 
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_010.png">
+&#8220;설치&#8221;버튼을 클릭하여 설치 진행!!
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_012.png">
+</p>
+
+
+<p>
+<img src="/images/201407/step_013.png">
+</p>
+
+
+<h5>4. 자동 업데이트 설정</h5>
+
+<p>
+<img src="/images/201407/step_014.png">
+자동업데이트는 사용해도 좋지만 실제 업데이트 하는 경우는 적기 때문에 체크해제 후 &#8220;닫기&#8221;버튼 클릭!!
+</p>
+
+
+<h5>5. 한글2007 실행</h5>
+
+<p>
+<img src="/images/201407/step_015.png">
+시작 -> 프로그램 -> &#8220;한글과컴퓨터 한글2008&#8221;
+</p>
+
+
+
+
+<p>
+<img src="/images/201407/step_016.png">
+</p>
+
+
+<h3>맺음</h3>
+
+<p>소프트웨어 설치는 쉬워보이지만 생소한 용어들이 어렵게 느껴지게 하는것 같다.
+누구나 쓰기 쉬운 소프트웨어를 만드는 일은 그만큼 고려해야 할 게 많은것 같다.</p>
+
+<p>여자친구가 한글(한컴오피스) 프로그램을 설치하는데 도움이 되길 바라며..</p>
 </div>
   
   
@@ -198,6 +261,10 @@ alt+F2 를 눌러서 콘솔로 접속을 한다. 이시점이면 /target 디렉�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/27/how-to-read-dht-series-of-humidity-and-temperature-sensors-on-a-raspberry-pi/">Raspberry Pi 에서 온습도 센서(DHT-11)로 온/습도 측정하기</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/07/04/build-kernel-on-lg-gram-laptop/">LG 그램 랩탑에서 Linux Kernel 빌드하기</a>
       </li>
     
@@ -213,10 +280,6 @@ alt+F2 를 눌러서 콘솔로 접속을 한다. 이시점이면 /target 디렉�
         <a href="/blog/2014/07/14/installing-hangul-application/">한글2007 설치하기 - 여자친구를 위한</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/12/14/installing-debian-on-macbook-air/">Macbook Air 에 Debian(wheezy) 설치하기</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -230,7 +293,7 @@ alt+F2 를 눌러서 콘솔로 접속을 한다. 이시점이면 /target 디렉�
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - foobargem -
+  Copyright &copy; 2016 - foobargem -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

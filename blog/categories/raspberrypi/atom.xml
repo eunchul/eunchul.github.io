@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Raspberrypi | Life with Linux]]></title>
+  <link href="http://blog.foobargem.com/blog/categories/raspberrypi/atom.xml" rel="self"/>
+  <link href="http://blog.foobargem.com/"/>
+  <updated>2016-03-27T22:51:33+09:00</updated>
+  <id>http://blog.foobargem.com/</id>
+  <author>
+    <name><![CDATA[foobargem]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi 에서 온습도 센서(DHT-11)로 온/습도 측정하기]]></title>
+    <link href="http://blog.foobargem.com/blog/2016/03/27/how-to-read-dht-series-of-humidity-and-temperature-sensors-on-a-raspberry-pi/"/>
+    <updated>2016-03-27T11:59:47+09:00</updated>
+    <id>http://blog.foobargem.com/blog/2016/03/27/how-to-read-dht-series-of-humidity-and-temperature-sensors-on-a-raspberry-pi</id>
+    <content type="html"><![CDATA[<h3>DHT11 온습도 센서</h3>
+
+<ul>
+<li><a href="http://eleparts.co.kr/EPXF43N9">http://eleparts.co.kr/EPXF43N9</a></li>
+<li>manual: <a href="http://www.micropik.com/PDF/dht11.pdf">http://www.micropik.com/PDF/dht11.pdf</a></li>
+<li>Python library:  <a href="https://github.com/adafruit/Adafruit_Python_DHT">https://github.com/adafruit/Adafruit_Python_DHT</a></li>
+</ul>
+
+
+<h3>시험환경</h3>
+
+<ul>
+<li>Raspberry PI B</li>
+<li>GPIO layout: <img src="http://www.raspberrypi-spy.co.uk/wp-content/uploads/2012/09/Raspberry-Pi-GPIO-Layout-Revision-2.png" alt="GPIO Layout" /></li>
+</ul>
+
+
+<h3>시험</h3>
+
+<p><strong>센서연결</strong></p>
+
+<ul>
+<li>pin #1 &ndash; 3V</li>
+<li>pin #6 &ndash; Ground</li>
+<li>pin #16 &ndash; GPIO23 (data)</li>
+</ul>
+
+
+<p><strong>설치</strong>
+<code>
+$ sudo python setup.py install
+</code></p>
+
+<p><strong>예제코드 수정 및 실행</strong></p>
+
+<p>예제코드: <a href="https://github.com/adafruit/Adafruit_Python_DHT/blob/master/examples/simpletest.py">https://github.com/adafruit/Adafruit_Python_DHT/blob/master/examples/simpletest.py</a></p>
+
+<p>```python</p>
+
+<h1>!/usr/bin/python</h1>
+
+<p>import Adafruit_DHT</p>
+
+<p>sensor = Adafruit_DHT.DHT11</p>
+
+<h1>GPIO23 (pin no: #16)</h1>
+
+<p>pin = 23</p>
+
+<p>humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)</p>
+
+<p>if humidity is not None and temperature is not None:</p>
+
+<pre><code>print "Temp={0:0.1f}*C Humidity={1:0.1f}%".format(temperature, humidity)
+</code></pre>
+
+<p>else:</p>
+
+<pre><code>print "Failed to get reading."
+</code></pre>
+
+<p>```</p>
+
+<p><strong>실행결과</strong>
+<code>
+$ sudo python read.py
+Temp=24.0*C Humidity=21.0%
+</code></p>
+
+<h3>ToDo</h3>
+
+<ul>
+<li>매일 아침 창문 밖의 온습도 측정하여 휴대폰으로 알람 발송.</li>
+<li>매 시간 단위로 온습도 측정하여 influxdb 에 저장. (그 후로는 나중에 생각하자..)</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

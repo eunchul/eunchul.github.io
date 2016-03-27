@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Life with Linux</title>
+  <title>Life with Linux</title>
   <meta name="author" content="foobargem">
 
   
-  <meta name="description" content="Blog Archive 2016 Raspberry Pi 에서 온습도 센서(DHT-11)로 온/습도 측정하기
-Mar 27 2016 posted in raspberrypi 2015 LG 그램 랩탑에서 Linux Kernel 빌드하기
-Jul 04 2015 posted &hellip;">
+  <meta name="description" content="늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
+OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
+그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다. Rbenv 프로젝트 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ Jul 04 2015 posted &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.foobargem.com/blog/archives">
+  <link rel="canonical" href="http://blog.foobargem.com/blog/page/7">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Life with Linux" type="application/atom+xml">
@@ -65,133 +65,109 @@ Jul 04 2015 posted &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/01/installing-rbenv/">Installing Rbenv on OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-01T22:12:48+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2013</time>
+        
+           | <a href="/blog/2013/12/01/installing-rbenv/#disqus_thread"
+             data-disqus-identifier="http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+  <div class="entry-content"><p>늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
+OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
+그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다.</p>
 
-  
-  <h2>2016</h2>
+<p><a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>의 가이드를 따라 설치를 하면
+irb 나 rails console 에서 한글을 입력하지 못하게 될것이고
+openssl 관련한 이슈가 생길것이다. (이전의 경험이라 지금은 확인을 안해봤다.)</p>
 
-<article>
-  
-<h1><a href="/blog/2016/03/27/how-to-read-dht-series-of-humidity-and-temperature-sensors-on-a-raspberry-pi/">Raspberry Pi 에서 온습도 센서(DHT-11)로 온/습도 측정하기</a></h1>
-<time datetime="2016-03-27T11:59:47+09:00" pubdate><span class='month'>Mar</span> <span class='day'>27</span> <span class='year'>2016</span></time>
+<p>이를 위해서 openssl 과 readline 을 ruby 를 빌드할때 참조시켜줘야 한다.
+brew 의 설치는 <a href="http://brew.sh/">Homebrew 프로젝트 페이지</a>를 참조하면 된다.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/raspberrypi/'>raspberrypi</a></span>
-</footer>
+<h3>openssl 설치</h3>
 
+<pre><code>brew install openssl
+</code></pre>
 
-</article>
+<h3>readline 설치</h3>
 
+<pre><code>brew install readline
+</code></pre>
 
+<h3>rbenv 설치</h3>
 
-  
-  <h2>2015</h2>
+<pre><code>$ cd  # move to home dir.
+$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
+$ source .bash_profile
+$ type rbenv
+#=&gt; "rbenv is a function"
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2015/07/04/build-kernel-on-lg-gram-laptop/">LG 그램 랩탑에서 Linux Kernel 빌드하기</a></h1>
-<time datetime="2015-07-04T11:06:36+09:00" pubdate><span class='month'>Jul</span> <span class='day'>04</span> <span class='year'>2015</span></time>
+<p>자세한 내용은 <a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>를 참조.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/firmware/'>firmware</a>, <a class='category' href='/blog/categories/kernel/'>kernel</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/wireless/'>wireless</a></span>
-</footer>
+<h3>ruby-build 설치</h3>
 
+<p>rbenv 의 plugin 으로 설치하는 것을 권장.</p>
 
-</article>
+<pre><code>$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+</code></pre>
 
+<p>자세한 내용은 <a href="https://github.com/sstephenson/ruby-build">ruby-build 프로젝트 페이지</a>를 참조.</p>
 
+<h3>ruby 설치</h3>
 
-<article>
-  
-<h1><a href="/blog/2015/01/24/i-like-bojagi-card/">보자기카드 샘플 후기</a></h1>
-<time datetime="2015-01-24T21:09:52+09:00" pubdate><span class='month'>Jan</span> <span class='day'>24</span> <span class='year'>2015</span></time>
+<pre><code>$ rbenv install --list   # 설치가능한 버전확인
+$ CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-openssl-dir=$(brew --prefix openssl)" rbenv install 2.0.0-p353
+$ rbenv global 2.0.0-p353
+$ rbenv rehash
+$ ruby --version
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/bojagikadeu/'>보자기카드</a>, <a class='category' href='/blog/categories/ceongceobjang/'>청첩장</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/blog/2014/08/27/multipath/">Multipath</a></h1>
-<time datetime="2014-08-27T11:11:11+09:00" pubdate><span class='month'>Aug</span> <span class='day'>27</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/debian/'>debian</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/storage/'>storage</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/07/14/installing-hangul-application/">한글2007 설치하기 - 여자친구를 위한</a></h1>
-<time datetime="2014-07-14T21:31:05+09:00" pubdate><span class='month'>Jul</span> <span class='day'>14</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/life/'>life</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/12/14/installing-debian-on-macbook-air/">Macbook Air 에 Debian(wheezy) 설치하기</a></h1>
-<time datetime="2013-12-14T23:09:46+09:00" pubdate><span class='month'>Dec</span> <span class='day'>14</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/debian/'>debian</a>, <a class='category' href='/blog/categories/linux/'>linux</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2013/12/01/installing-rbenv/">Installing Rbenv on OS X</a></h1>
-<time datetime="2013-12-01T22:12:48+09:00" pubdate><span class='month'>Dec</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
-
-
-</article>
-
+<p>이것으로 완료!!
+즐거운 루비 곡갱이질을.. :)</p>
 </div>
-
   
-</article>
+  
 
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/6/">Newer &rarr;</a>
+    
+  </div>
 </div>
-
 <aside class="sidebar">
   
     <section>
@@ -227,7 +203,6 @@ Jul 04 2015 posted &hellip;">
 
   
 </aside>
-
 
     </div>
   </div>
