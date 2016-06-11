@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Packaging | Life with Linux]]></title>
   <link href="http://blog.foobargem.com/blog/categories/packaging/atom.xml" rel="self"/>
   <link href="http://blog.foobargem.com/"/>
-  <updated>2016-06-11T16:45:06+09:00</updated>
+  <updated>2016-06-11T16:49:48+09:00</updated>
   <id>http://blog.foobargem.com/</id>
   <author>
     <name><![CDATA[foobargem]]></name>
@@ -36,7 +36,9 @@
 
 <pre><code>$ mkdir rpmbuild
 $ cd rpmbuild
-$ mkdir SOURCES SPECS BUILD RPMS SRPMS
+$ mkdir SOURCES SPECS BUILD BUILDROOT RPMS SRPMS
+$ ls
+BUILD  BUILDROOT  RPMS  SOURCES  SPECS  SRPMS
 </code></pre>
 
 <table>
