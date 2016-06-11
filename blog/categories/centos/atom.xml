@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Centos | Life with Linux]]></title>
   <link href="http://blog.foobargem.com/blog/categories/centos/atom.xml" rel="self"/>
   <link href="http://blog.foobargem.com/"/>
-  <updated>2016-06-11T16:49:48+09:00</updated>
+  <updated>2016-06-11T17:31:15+09:00</updated>
   <id>http://blog.foobargem.com/</id>
   <author>
     <name><![CDATA[foobargem]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Build a Kernel Module on CentOS]]></title>
+    <link href="http://blog.foobargem.com/blog/2016/06/11/build-a-kernel-module-on-centos/"/>
+    <updated>2016-06-11T16:56:53+09:00</updated>
+    <id>http://blog.foobargem.com/blog/2016/06/11/build-a-kernel-module-on-centos</id>
+    <content type="html"><![CDATA[<h3>발단</h3>
+
+<p>bcache (Linux kernel block layer cache) 를 적용하려고 알아보니 CentOS 7 의 커널은 bcache module 이 disabled 였다.
+그래서 kernel source 를 받아서 bcache module 을 build 시도했다.</p>
+
+<p>경험하면 할 수록 CentOS 는 서버환경에서 별로이다. &ndash; Debian 추천!! :)</p>
+
+<h3>Build 환경 구축</h3>
+
+<h5>required packages 설치</h5>
+
+<pre><code># yum install rpm-build redhat-rpm-config asciidoc hmaccalc perl-ExtUtils-Embed pesign xmlto \
+              audit-libs-devel binutils-devel elfutils-devel elfutils-libelf-devel \
+              ncurses-devel newt-devel numactl-devel pciutils-devel python-devel zlib-devel
+</code></pre>
+
+<h5>kernel source 다운로드</h5>
+
+<p><a href="http://vault.centos.org/7.N.YYMM/updates/Source/SPackages/">http://vault.centos.org/7.N.YYMM/updates/Source/SPackages/</a> 에서 kernel-$(uname -r).src.rpm 파일을 다운로드 및 설치한다.
+설치가 되면 rpmbuild 디렉토리 이하에 관련 files 이 복사되어 있다.</p>
+
+<pre><code># rpm -i http://vault.centos.org/7.2.1511/updates/Source/SPackages/kernel-3.10.0-327.18.2.el7.src.rpm 2&gt;&amp;1 | grep -v exist
+# cd ~rpmbuild/SPECS
+# rpmbuild -bp --target=$(uname -m) kernel.spec
+# cd ~rpmbuild/BUILD
+</code></pre>
+
+<h5>module build</h5>
+
+<p><strong>edit .config</strong></p>
+
+<pre><code># cd ~rpmbuild/BUILD/kernel-3.10.0-327.13.1.el7/linux-3.10.0-327.13.1.el7.x86_64
+# vim .config
+</code></pre>
+
+<p><strong>.config</strong></p>
+
+<pre><code>...
+CONFIG_BCACHE=m
+...
+</code></pre>
+
+<p><strong>build</strong></p>
+
+<pre><code># make modules_install SUBDIRS=drivers/md/bcache
+// modules_install: bcache.ko 복사,depmod -a 수행
+
+# modinfo bcache
+filename:       /lib/modules/3.10.0-327.13.1.el7.x86_64/kernel/drivers/md/bcache/bcache.ko
+author:         Kent Overstreet &lt;kent.overstreet@gmail.com&gt;
+license:        GPL
+license:        GPL
+author:         Kent Overstreet &lt;koverstreet@google.com&gt;
+rhelversion:    7.2
+srcversion:     744AC1548F61C54B1445EF6
+depends:
+vermagic:       3.10.0 SMP mod_unload modversions
+</code></pre>
+
+<h5>모듈 적재</h5>
+
+<pre><code># modprobe bcache
+insmod: error inserting 'bcache.ko': -1 Invalid module format
+
+# dmesg
+...
+bcache: no symbol version for module_layout
+</code></pre>
+
+<p>모듈 build 할때 signing 이 안되어서 발생하는 문제.  (signing 하는 방법은 추후에 업데이트 할것!!)</p>
+
+<p>일단은 &mdash;force 으로 해결!!</p>
+
+<pre><code># modprobe -f bcache
+# lsmod | grep bcache
+bcache                209287  0
+</code></pre>
+
+<h3>적용후</h3>
+
+<p>동일한 조건에서 dm-cache 와 bcache 를 fio 로 시험을 해보았다.
+결과는 dm-cache 가 random read, sequential read 가 월등히 빨랐다.</p>
+
+<p>CentOS 에서 bcache 모듈을 제외한게 dm-cache 가 좋다고 판단해서 일까&hellip;</p>
+
+<h3>참고</h3>
+
+<ul>
+<li><a href="https://wiki.centos.org/HowTos/Custom_Kernel">https://wiki.centos.org/HowTos/Custom_Kernel</a></li>
+<li><a href="https://wiki.centos.org/HowTos/I_need_the_Kernel_Source">https://wiki.centos.org/HowTos/I_need_the_Kernel_Source</a></li>
+<li><a href="https://www.kernel.org/doc/Documentation/module-signing.txt">https://www.kernel.org/doc/Documentation/module-signing.txt</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RPM Packaging]]></title>
