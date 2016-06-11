@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Installing Rbenv on OS X - Life with Linux</title>
+  <title>RPM Packaging - Life with Linux</title>
   <meta name="author" content="foobargem">
 
   
-  <meta name="description" content="늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
-OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
-그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다. Rbenv 프로젝트 &hellip;">
+  <meta name="description" content="발단 VMware VM 중 1대의 Disk 공간이 부족해서 resize 를 하려고 했는데 parted-3.1 (CentOS 7) 에는 resize command 가 없어졌다.
+구글링을 해보니 parted-3.2 에 resizepart 가 추가되었다고 한다. http &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.foobargem.com/blog/2013/12/01/installing-rbenv">
+  <link rel="canonical" href="http://blog.foobargem.com/blog/2016/06/11/rpm-packaging">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Life with Linux" type="application/atom+xml">
@@ -70,7 +69,7 @@ OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
   
   <header>
     
-      <h1 class="entry-title">Installing Rbenv on OS X</h1>
+      <h1 class="entry-title">RPM Packaging</h1>
     
     
       <p class="meta">
@@ -86,7 +85,7 @@ OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
   
 
 
-<time datetime="2013-12-01T22:12:48+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2013</time>
+<time datetime="2016-06-11T11:36:38+09:00" pubdate data-updated="true">Jun 11<span>th</span>, 2016</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.foobargem.com">Comments</a>
@@ -96,60 +95,171 @@ OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
   </header>
 
 
-<div class="entry-content"><p>늘 하는 얘기지만 Linux 에서는 이런 고민은 안해도 된다.
-OS X Mavericks 에서는 ruby-2.0.0p247 이 시스템에 설치되어 있다.
-그래도 최신버전의 ruby와 GEM 을 편리하게 관리하려면 rbenv 만한 것도 없는것 같다.</p>
+<div class="entry-content"><h3>발단</h3>
 
-<p><a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>의 가이드를 따라 설치를 하면
-irb 나 rails console 에서 한글을 입력하지 못하게 될것이고
-openssl 관련한 이슈가 생길것이다. (이전의 경험이라 지금은 확인을 안해봤다.)</p>
+<p>VMware VM 중 1대의 Disk 공간이 부족해서 resize 를 하려고 했는데 parted-3.1 (CentOS 7) 에는 resize command 가 없어졌다.
+구글링을 해보니 parted-3.2 에 resizepart 가 추가되었다고 한다.</p>
 
-<p>이를 위해서 openssl 과 readline 을 ruby 를 빌드할때 참조시켜줘야 한다.
-brew 의 설치는 <a href="http://brew.sh/">Homebrew 프로젝트 페이지</a>를 참조하면 된다.</p>
+<ul>
+<li><a href="http://savannah.gnu.org/forum/forum.php?forum_id=8042">http://savannah.gnu.org/forum/forum.php?forum_id=8042</a></li>
+</ul>
 
-<h3>openssl 설치</h3>
 
-<pre><code>brew install openssl
+<p>그래서 소스코드를 직접 빌드하고서 내친김에 rpm packaging 까지 하게 되었다.</p>
+
+<h3>rpm 패키징</h3>
+
+<h5>Build directory 생성</h5>
+
+<pre><code>$ mkdir rpmbuild
+$ cd rpmbuild
+$ mkdir SOURCES SPECS BUILD RPMS SRPMS
 </code></pre>
 
-<h3>readline 설치</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Directory</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SOURCES</td>
+      <td>original sources, patches, icon files 가 포함된 디렉토리</td>
+    </tr>
+    <tr>
+      <td>SPECS</td>
+      <td>rpm build 를 위한 spec files 가 있는 디렉토리</td>
+    </tr>
+    <tr>
+      <td>BUILD</td>
+      <td>source file 압축해제 및 build 되는 디렉토리</td>
+    </tr>
+    <tr>
+      <td>BUILDROOT</td>
+      <td>%install stage 에서 생성되는 files 가 저장되는 디렉토리</td>
+    </tr>
+    <tr>
+      <td>RPMS</td>
+      <td>binary package files (*.rpm) 이 만들어지는 디렉토리</td>
+    </tr>
+    <tr>
+      <td>SRPMS</td>
+      <td>source package files (*.src.rpm) 이 만들어지는 디렉토리</td>
+    </tr>
+  </tbody>
+</table>
 
-<pre><code>brew install readline
+
+<h5>Spec file 작성</h5>
+
+<pre><code>$ cd SPECS
+$ vim parted-3.2.spec
 </code></pre>
 
-<h3>rbenv 설치</h3>
+<p><strong>parted-3.2.spec</strong></p>
 
-<pre><code>$ cd  # move to home dir.
-$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
-$ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
-$ source .bash_profile
-$ type rbenv
-#=&gt; "rbenv is a function"
+<p>gist: <a href="https://gist.github.com/foobargem/f260b896fe030a382b7b18f43633a8a4#file-parted-3-2-spec">https://gist.github.com/foobargem/f260b896fe030a382b7b18f43633a8a4#file-parted-3-2-spec</a></p>
+
+<pre><code>%global _enable_debug_package 0
+%global debug_package %{nil}
+%define dist .el7.nhnent
+%define _prefix /opt/parted
+
+Name: parted
+Version: 3.2
+Release: 1%{?dist}
+Summary: The GNU disk partition manipulation program
+
+License: GPLv3+
+URL: http://www.gnu.org/software/parted
+Source0: parted-3.2.tar.xz
+
+%description
+The GNU Parted program allows you to create, destroy, resize, move,
+and copy hard disk partitions. Parted can be used for creating space
+for new operating systems, reorganizing disk usage, and copying data
+to new hard disks.
+
+%prep
+%setup -q
+
+%build
+%configure
+make %{?_smp_mflags}
+
+%install
+%make_install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%{_prefix}
+#%{_datadir}/*
+#%{_includedir}/*
+#%{_libdir}/*
+#%{_sbindir}/*
+
+%changelog
+* Fri Jun 10 2016 makerpm
+- build and packaging
 </code></pre>
 
-<p>자세한 내용은 <a href="https://github.com/sstephenson/rbenv">Rbenv 프로젝트 페이지</a>를 참조.</p>
+<h5>Build</h5>
 
-<h3>ruby-build 설치</h3>
-
-<p>rbenv 의 plugin 으로 설치하는 것을 권장.</p>
-
-<pre><code>$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+<pre><code>$ cd SPECS
+$ rpmbuild -bb parted-3.2.spec
 </code></pre>
 
-<p>자세한 내용은 <a href="https://github.com/sstephenson/ruby-build">ruby-build 프로젝트 페이지</a>를 참조.</p>
+<p>오류 없으면 rpmbuilds/RPMS/x86_64/parted-3.2-1.el7.nhnent.x86_64.rpm 파일이 생성된다.</p>
 
-<h3>ruby 설치</h3>
+<h3>설명</h3>
 
-<pre><code>$ rbenv install --list   # 설치가능한 버전확인
-$ CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline) --with-openssl-dir=$(brew --prefix openssl)" rbenv install 2.0.0-p353
-$ rbenv global 2.0.0-p353
-$ rbenv rehash
-$ ruby --version
+<pre><code>%global _enable_debug_package 0
+%global debug_package %{nil}
 </code></pre>
 
-<p>이것으로 완료!!
-즐거운 루비 곡갱이질을.. :)</p>
+<p>debug package 를 생성하지 않음</p>
+
+<pre><code>%define dist .el7.nhnent
+%define _prefix /opt/parted
+</code></pre>
+
+<p>main stream package 와 구분하기 위해서 release name 에 nhnent 라는 접미사를 붙였고
+package files 의 prefix 를 /opt/parted 로 지정했다.</p>
+
+<h3>에피소드</h3>
+
+<ul>
+<li>prefix 와 %files</li>
+</ul>
+
+
+<p>prefix 를 /opt/parted 로 하고 %files 에 각 파일을 기술해줬더니
+패키지 삭제시 empty directory 가 남아있는 이슈가 있었다.
+그래서 %files 를 %{_prefix} 롤 지정했다.</p>
+
+<p>만약 /usr 디렉토리에 sbin, share, lib 등으로 나누어 설치하게 하려면
+%files 에 아래와 같이 기술해줘야 한다.</p>
+
+<pre><code>%files
+%{_datadir}/*
+%{_includedir}/*
+%{_libdir}/*
+%{_sbindir}/*
+</code></pre>
+
+<h3>참고</h3>
+
+<ul>
+<li><a href="http://www.tldp.org/HOWTO/RPM-HOWTO/build.html">http://www.tldp.org/HOWTO/RPM-HOWTO/build.html</a></li>
+<li><a href="https://fedoraproject.org/wiki/How_to_create_an_RPM_package">https://fedoraproject.org/wiki/How_to_create_an_RPM_package</a></li>
+<li><a href="https://fedoraproject.org/wiki/Packaging:DistTag">https://fedoraproject.org/wiki/Packaging:DistTag</a></li>
+<li><a href="https://fedoraproject.org/wiki/How_to_create_a_GNU_Hello_RPM_package">https://fedoraproject.org/wiki/How_to_create_a_GNU_Hello_RPM_package</a></li>
+</ul>
+
 </div>
 
 
@@ -172,12 +282,12 @@ $ ruby --version
   
 
 
-<time datetime="2013-12-01T22:12:48+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2013</time>
+<time datetime="2016-06-11T11:36:38+09:00" pubdate data-updated="true">Jun 11<span>th</span>, 2016</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/centos/'>centos</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/packaging/'>packaging</a>, <a class='category' href='/blog/categories/rpm/'>rpm</a>
   
 </span>
 
@@ -195,8 +305,8 @@ $ ruby --version
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2016/04/13/stunnel-with-ulimit/" title="Previous Post: stunnel with ulimit">&laquo; stunnel with ulimit</a>
       
-        <a class="basic-alignment right" href="/blog/2013/12/14/installing-debian-on-macbook-air/" title="Next Post: Macbook Air 에 Debian(wheezy) 설치하기">Macbook Air 에 Debian(wheezy) 설치하기 &raquo;</a>
       
     </p>
   </footer>
@@ -262,8 +372,8 @@ $ ruby --version
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/';
-        var disqus_url = 'http://blog.foobargem.com/blog/2013/12/01/installing-rbenv/';
+        var disqus_identifier = 'http://blog.foobargem.com/blog/2016/06/11/rpm-packaging/';
+        var disqus_url = 'http://blog.foobargem.com/blog/2016/06/11/rpm-packaging/';
         var disqus_script = 'embed.js';
       
     (function () {
